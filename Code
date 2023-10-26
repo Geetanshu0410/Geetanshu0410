@@ -1,0 +1,91 @@
+/*1*/ import java.util.Scanner;
+
+class Customer {
+    private String customerName;
+    private String customerAddress;
+    private String customerId;
+
+    public Customer(String name,String address, String id) {
+        customerName = name;
+        customerAddress = address;
+        customerId = id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+}
+
+class Bill {
+    private Customer customer;
+    private int unitsConsumed;
+    private double billAmount;
+
+    public Bill(Customer customer, int units) {
+        this.customer = customer;
+        unitsConsumed = units;
+        calculateBillAmount();
+    }
+
+    public void calculateBillAmount() {
+        // Replace this with your actual billing calculation logic
+        billAmount = unitsConsumed * 0.1; // $0.1 per unit
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public int getUnitsConsumed() {
+        return unitsConsumed;
+    }
+
+    public double getBillAmount() {
+        return billAmount;
+    }
+}
+
+public class PowerSupplyManagementSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Power Supply and Bill Management System");
+
+        // Get customer information
+        System.out.println("Enter customer name: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter customer address: ");
+        String address = scanner.nextLine();
+        System.out.println("Enter customer ID: ");
+        String id = scanner.nextLine();
+
+        // Create a customer object
+        Customer customer = new Customer(name, address, id);
+
+        // Get power consumption information
+        System.out.println("Enter units consumed: ");
+        int units = scanner.nextInt();
+
+        // Create a bill object
+        Bill bill = new Bill(customer, units);
+
+        // Display bill details
+        System.out.println("\nBill Details");
+        System.out.println("Customer Name: " + bill.getCustomer().getCustomerName());
+        System.out.println("Customer Address: " + bill.getCustomer().getCustomerAddress());
+        System.out.println("Customer ID: " + bill.getCustomer().getCustomerId());
+        System.out.println("Units Consumed: " + bill.getUnitsConsumed());
+        System.out.println("Bill Amount: $" + bill.getBillAmount());
+
+        scanner.close();
+    }
+}
+
